@@ -14,7 +14,7 @@ datatypes=c("DERIVED_STEP10","DERIVED_STEP30","POSITIVE_DERIVED_STEP10","POSITIV
 ### LOADING DATA
 
 FILE_NAME="REAL_RESULTS_CAPTURE_LIST_PLUS_NOT_ANNOT_NOINDEL_LDGROUPS"
-datas=loadRData(paste("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/ESTIMATION_WORKSPACE/tmp/",FILE_NAME,sep=""))
+datas=loadRData(paste("~/Data/",FILE_NAME,sep=""))
 data=datas[[datatypes[4]]]
 data_neg=datas[[datatypes[2]]]
 colnames(data)[2]="CHR.POS"
