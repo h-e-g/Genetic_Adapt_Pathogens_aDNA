@@ -1,6 +1,5 @@
 ### PRS OVER TIME FOR IBD/CD
-source("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/RSCRIPTS_PAPIER/Building_PRS_autoimmune_infection.R")
-
+source("~/PRS/Building_PRS_autoimmune_infection.R")
 
 fenos=c("cd_build37_40266_20161107_bonferroni.txt",
         "ibd_build37_59957_20161107_bonferroni.txt")
