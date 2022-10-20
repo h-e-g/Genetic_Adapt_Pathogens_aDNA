@@ -1,0 +1,96 @@
+##### GWAS ATLAS release v20191115 #####
+# Total 4756 GWAS
+# Last curated 2019 August
+#
+# 18 Nov 2019: Update for MAGMA gene-set
+#
+# Kyoko Watanabe (k.watanabe@vu.nl)
+########################################
+
+##### gwasATLAS_v20191115.txt.gz / gwasATLAS_v20191115.xlsx.gz #####
+id	Unique ID in the database (arbitrary ordered).
+PMID	Pubmed ID of the original study. If the study is not published, mentioned in this feature or dio of bioRxiv is provided.
+Year	The year of the original study is published. If the study is not published, the year of the data was distributed.
+File	Link to the original summary statistics. When submission of online form is required, the link is to the online form. Otherwise, directly linked to the downloadable file.
+Website	Link to the website if available (not the direct link to the summary statistics file).
+Consortium	The name of consortium if available.
+Domain	General domain of the trait.
+ChapterLevel	Chapter of the trait obtained from either ICD10 or ICF10.
+SubchapterLevel	Subchapter of the trait obtained from either ICD10 or ICF10.
+Trait	The trait name used in the original study (or as close as possible).
+uniqTrait	The trait name harmonised across database. This matches traits with slightly different name in the "Trait" feature, but does not mean that phenotype definition is exactly the same. Please refer the original study for detailed phenotype definition.
+Population	One of the five super ancestry populations defined in 1000 genome project, AFR (African), AMR (American), EAS (East asian), EUR (European), and SAS (South asian). If the GWAS is trans ethnic study, all of the population is listed but the first one has the highest proportion of the total sample size of the study. For example, EUR+EAS+SAS means the study cohorts are mix of three populations, but EUR samples occupy the highest proportion of the total sample size (does not have to be majority). For UK Biobank cohort, it is "UKB1 (EUR)" for release 1, "UKB2 (EUR)" for release 2 and "UKB2b (EUR)" for release 2b (which is the second release with SNPs imputed by 1KG/UK10k, release of 2018 May).
+Ncase	For binary trait, the number of cases.
+Ncontrol	For binary trait, the number of controls.
+N	Total number of sample size used for the analyses. This number is the total sample size used to generate the summary statistics which is publicly available. In some meta-analysis studies, some cohorts are restricted to distribute summary statistics. In that case, publicly available summary statistics dose not include specific cohorts and the sample size in this database corresponds to the sample size excluding those cohorts.
+Nsnps	The number of SNPs in the original GWAS summary statistics.
+Nhits	The number of risk loci. The definition of risk loci is described in the section, "4. Definition of lead SNPs and risk loci" of the online documentation.
+SNPh2	SNP heritability estimated by LD score regression in observed scale. This is only available for GWAS that meet certain criteria, otherwise blank. See section "5. Estimation of SNP heritability and genetic correlation with LD score regression" in the online documentation for details.
+SNPh2_se	If SNPh2 is available, standard error of SNPh2.
+SNPh2_z	If SNP h2 is available, Z statistics of SNP h2.
+SNPh2_l	SNP heritability estimated by LD score regression in liability scale, This is only available for binary traits. Population prevalence used are in "Note" column.
+SNPh2_l_se	If SNPh2_l is available. standard error of SNPh2_l
+LambdaGC	If SNP h2 is available, estimated Lambda GC.
+Chi2	If SNP h2 is available, estimated chi square.
+Intercept	If SNP h2 is available, estimated single trait intercept.
+Note	Any information that is relevant, extracted from the original study.
+DateAdded	Date when the GWAS was curated.
+DateLastModified	Last date when the database information was modified.
+
+##### gwasATLAS_v20191115_columns.txt.gz #####
+## The column names of the original GWAS summary statistics files used in the GWAS ATLAS.
+## NA could mean either the column is missing or auto detected.
+id If of GWAS entry matches with "id" column of gwasATLAS_v20191115.txt.gz file
+chr	Chromosome column
+pos Position column
+ea	Effect allele column
+nea	Non-effect allele column
+p	P-value column
+beta	Beta column
+or	Odds Ratio column
+se	Standard error column
+rsID	rsID column
+N	Total sample size column
+
+##### gwasATLAS_v20191115_GC.txt.gz #####
+## The file contains full pair-wise genetic correlation estimated by LD score regression software.
+## Only traits meet filtering criteria are included.
+## Please refer to the online documentation for more details.
+id1 ID of GWAS entry matches with "id" column of gwasATLAS_v20191115.txt.gz file
+id2	Same as id1, it is always id1 < id2
+rg	Genetic correlation estimate
+se	Standard error
+z	Z-score
+p	P-valu
+gcov_int	Cross-trait intersept
+gcov_int_se	Standard error of cross-trait intersept
+
+##### gwasATLAS_v20191115_magma_P.txt.gz #####
+## The file contains all gene P-value based on MAGMA gene analysis.
+# 1st column is Ensembl gene ID (hg19).
+# Header name is ID of GWAS entry matches with "id" column of gwasATLAS_v20191115.txt.gz file.
+# Values are P-value of MAGMA gene analysis (SNP wise mean model).
+# SNPs are assigned to genes with 1kb windows both side
+# NA when a gene is not tested (due to lack of SNPs).
+# The order of genes are arbitrary.
+
+##### gwasATLAS_v20191115_magma_sets_P.txt.gz #####
+## The file contains all P-value of gene-sets based on MAGMA gene-set analysis.
+# 1st column is gene set name (MsigDB v7.0).
+# Header name is ID of GWAS entry matches with "id" column of gwasATLAS_v20191115.txt.gz file.
+# Values are P-value of MAGMA gene-set analysis.
+# NA when a gene-set is not tested.
+# The order of gene-sets are arbitrary.
+
+##### gwasATLAS_v20191115_riskloci.txt.gz #####
+## The file contains full list of GWAS loci
+## For the definition of loci, please refer to the documentation 
+id	ID of GWAS entry matches with "id" column of gwasATLAS_v20191115.txt.gz file.
+uniqID	unique ID of the top SNP (the most significant SNP in the locus).
+rsID	rsID of the top SNP
+chr	Chromosome
+pos	Position of SNPs on hg19
+p	GWAS P-value of the top SNP
+start	Start position of the locus
+end	End position of the locus
+
