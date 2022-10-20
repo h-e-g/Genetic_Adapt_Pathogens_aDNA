@@ -14,10 +14,11 @@ datatypes=c("DERIVED_STEP10","DERIVED_STEP30","POSITIVE_DERIVED_STEP10","POSITIV
 ### LOADING DATA
 
 FILE_NAME="REAL_RESULTS_CAPTURE_LIST_PLUS_NOT_ANNOT_NOINDEL_LDGROUPS"
-datas=loadRData(paste("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/ESTIMATION_WORKSPACE/tmp/",FILE_NAME,sep=""))
+datas=loadRData(paste("~/Data/",FILE_NAME,sep=""))
+groups=loadRData("~/Data/groupsLDEnrichment0.075pval0.01")
 data=datas[[datatypes[4]]]
 data=data %>% filter(!(abs(Epoch5.F-Epoch7.F)>0.1))
-groups=loadRData("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/ESTIMATION_WORKSPACE/tmp/groupsLDEnrichment0.075pval0.01")
+
 
 ### LOAD ALSO NEGATIVE SELECTION
 data_neg=datas[[datatypes[2]]]
@@ -30,16 +31,16 @@ data_neg=data_neg %>% filter(!(abs(Epoch7.F-Epoch5.F)>0.1))
 ### data was downloaded from here: https://www.phpc.cam.ac.uk/ceu/haematological-traits/
 
 #### Prune aDNA dataset to keep only independent variants (stronger on the HLA region)
-AfterPrunning=as.character(as.vector(read.table("/Volumes/IGSR/GASPARD/DATING_SELECTION/GAIA/GENOMEWIDE2021/prunning100-10-0.6_maf0.01.prune.in",header=F,sep="\t")[,1]))
+AfterPrunning=as.character(as.vector(read.table("~/Data/prunning100-10-0.6_maf0.01.prune.in",header=F,sep="\t")[,1]))
 data_pruned=data %>% filter(SNP %in% AfterPrunning)
 HLA_LDGroups=c("6:57","6:58","6:59","6:60","6:61","6:62","6:63","6:64","6:65")
-stronger_pruned=as.character(as.vector(read.table("/Volumes/IGSR/GASPARD/DATING_SELECTION/GAIA/GENOMEWIDE2021/prunning1000-100-0.6_maf0.01.prune.in",header=F)[,1]))
+stronger_pruned=as.character(as.vector(read.table("~/Data/prunning1000-100-0.6_maf0.01.prune.in",header=F)[,1]))
 ToInclude=(data %>% filter(GroupsLD %in% HLA_LDGroups & SNP %in% stronger_pruned))$SNP
 data_pruned_tmp=data_pruned %>% filter(!(GroupsLD %in% HLA_LDGroups))
 data_pruned_plus_HLA=rbind(data_pruned_tmp,data %>% filter(SNP %in% ToInclude))
 
 ### LOAD ALL HEMATOPOIETIC-RELATED GWAS DATA (only genome-wide significant)
-All_sig=fread("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/RESULTS/IMMUNEGWAS/igv_gwsig/ALL.gwas")
+All_sig=fread("~/Data/ALL.gwas")
 All_sig_vars=All_sig$VARIANT
 All_sig=All_sig[-which(grepl("_",All_sig_vars)==F),]
 All_sig_vars=All_sig_vars[-which(grepl("_",All_sig_vars)==F)]
@@ -90,7 +91,7 @@ names2=c("basophils","basophils_neutrophils_sum","basophils_p","basophils_p_gran
          "mean_corpuscular_volume","monocytes","monocytes_p","mean_platelet_volume","myeloid_white_cell","neutrophils","neutrophils_eosinophils_sum",
          "neutrophils_p","neutrophils_p_granulocytes","plateletcrit","platelet_distribution_width","platelets","red_blood_cells","red_cell_distribution_width",
          "reticulocytes","reticulocytes_p","white_blood_cells")
-FullFileName="/Volumes/IGSR/GASPARD/DATING_SELECTION/GAIA/GENOMEWIDE2021/v44.3_1240K_public.anno.Extracted.Ancestries.txt.Extracted.Ancestries.txt"
+FullFileName="~/Data/v44.3_1240K_public.anno.Extracted.Ancestries.txt.Extracted.Ancestries.txt"
 
 ### Initialize variables
 pvaluesAll=NULL
@@ -118,7 +119,7 @@ for(j in 1:length(fenos)){
   colnames(dataInds)[which(colnames(dataInds)==NameCountry)]="Country"
   
   ### HERE ELIMINATE ARMENIAN AND GEORGIAN INDIVIDUALS THAT REMAINED IF SO + RELATED INDIVIDUALS DEFINED BY READ OR METAFILE
-  ListRelatedeness=read.table("/Volumes/IGSR/GASPARD/DATING_SELECTION/GAIA/GENOMEWIDE2021/READ_RELATEDENESS/RELATEDENESS_BASED_ON_ANNOTATION_CAPTURE_1stDEGREE_INDS_TO_REMOVE.txt",header=F)
+  ListRelatedeness=read.table("~/Data/RELATEDENESS_BASED_ON_ANNOTATION_CAPTURE_1stDEGREE_INDS_TO_REMOVE.txt",header=F)
   rowsToEliminate=which(dataInds$Country=="Armenia" | dataInds$Country=="Georgia" | dataInds$ID %in% ListRelatedeness[,1])
   
   ## choose the hematopoeitic trait to study
