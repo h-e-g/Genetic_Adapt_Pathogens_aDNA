@@ -1,5 +1,5 @@
 ### PRS OVER TIME FOR COVID
-source("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/RSCRIPTS_PAPIER/Building_PRS_autoimmune_infection.R")
+source("~/PRS/Building_PRS_autoimmune_infection.R")
 
 fenos=c("COVID_A2","COVID_B2")
 names=fenos
