@@ -3,7 +3,6 @@ library(data.table)
 library(dplyr)
 library(ggplot2)
 
-### Figure 4
 loadRData <- function(fileName){
   #loads an RData file, and returns it
   load(fileName)
