@@ -1,5 +1,5 @@
 ### PRS OVER TIME FOR INFECTION
-source("/Volumes/IGSR/GASPARD/DATING_SELECTION/ZEUS/RSCRIPTS_PAPIER/Building_PRS_autoimmune_infection.R")
+source("~/PRS/Building_PRS_autoimmune_infection.R")
 
 FullFileName="/Volumes/IGSR/GASPARD/DATING_SELECTION/GAIA/GENOMEWIDE2021/v44.3_1240K_public.anno.Extracted.Ancestries.txt.Extracted.Ancestries.txt"
 dataInds = read.csv(FullFileName,header=T,sep="\t")
