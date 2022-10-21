@@ -1,6 +1,6 @@
 # Genetic_Adapt_Pathogens_aDNA
 
-Code provided is for reproducing main analyses of Kerner et al., Genetic adaptation to pathogens and increased risk of inflammatory disorders in post-Neolithic Europe (2022).
+Code for reproducing main analyses of Kerner et al., Genetic adaptation to pathogens and increased risk of inflammatory disorders in post-Neolithic Europe (2022).
 
 In this work, we use simulations and an approximate Bayesian computation approach based on time-series of allele frequency trajectories computed from publicly available ancient DNA (1240k capture array) to unravel candidate variants and loci under natural selection over the last 10,000 years in Europe.
 
